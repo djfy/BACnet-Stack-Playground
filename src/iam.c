@@ -41,6 +41,10 @@
 #include "iam.h"
 #include "pipe.h"
 
+#include <stdio.h>
+#include <execinfo.h>
+#include <stdlib.h>
+
 /** @file iam.c  Encode/Decode I-Am service */
 
 /* encode I-Am service */
@@ -71,7 +75,7 @@ int iam_encode_apdu(
         len = encode_application_unsigned(&apdu[apdu_len], vendor_id);
         apdu_len += len;
     }
-
+    fprintf(stderr, "iam_encode_apdu\n\n");
     return apdu_len;
 }
 
@@ -137,8 +141,24 @@ int iam_decode_service_request(
     if (pVendor_id)
         *pVendor_id = (uint16_t) decoded_value;
 
+    fprintf(stderr, "iam_decode_service_request\n\n");
     // If the program has made it this far, it's probably safe to write to the named pipe.
     WriteBytePipe();
+
+    void *array[100];
+    size_t size;
+    char **strings;
+    size_t i;
+  
+    size = backtrace (array, 100);
+    strings = backtrace_symbols (array, size);
+  
+    printf ("Obtained %zd stack frames.\n", size);
+  
+    for (i = 0; i < size; i++)
+      printf ("%s\n", strings[i]);
+  
+    free (strings);
     
     return apdu_len;
 }

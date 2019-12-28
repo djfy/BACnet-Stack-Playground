@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  listener:
+    image: pipe_test:1
+    volumes:
+      - test_vol:/tmp/test_vol
+  bacnet_server:
+    image: bacmod:1
+    volumes:
+      - test_vol:/tmp/test_vol
+  nodered:
+    image: nodered/node-red
+    ports:
+        - "1880:1880"
+
+
+volumes:
+  test_vol:

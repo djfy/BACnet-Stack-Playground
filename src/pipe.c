@@ -21,7 +21,7 @@ static int pipe_fd = -1;
 
 void PrintErrno(int err)
 {
-  fprintf(stderr, "Error making FIFO: %s", strerror(err));
+  fprintf(stderr, "Error (%d): %s", err, strerror(err));
 }
 
 void HandlerSIGPIPE(int sig)
@@ -43,8 +43,8 @@ void ConstructPipe()
       if(EEXIST != err)
       {
         PrintErrno(err);
+        exit(EXIT_FAILURE);
       }
-      exit(EXIT_FAILURE);
     }
 
     pipe_fd = open(pipe_path, O_WRONLY);
@@ -66,7 +66,7 @@ void WriteBytePipe()
   if(-1 != pipe_fd)
   {
     uint8_t b = 1;
-    ssize_t size = write(pipe_fd, (void*) b, sizeof(b));
+    ssize_t size = write(pipe_fd, (void*)(&b), sizeof(b));
     if(-1 == size)
     {
       PrintErrno(errno);

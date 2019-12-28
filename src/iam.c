@@ -39,6 +39,7 @@
 #include "bacdcode.h"
 #include "address.h"
 #include "iam.h"
+#include "pipe.h"
 
 /** @file iam.c  Encode/Decode I-Am service */
 
@@ -136,6 +137,9 @@ int iam_decode_service_request(
     if (pVendor_id)
         *pVendor_id = (uint16_t) decoded_value;
 
+    // If the program has made it this far, it's probably safe to write to the named pipe.
+    WriteBytePipe();
+    
     return apdu_len;
 }
 

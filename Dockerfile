@@ -23,6 +23,7 @@ RUN set -x \
 FROM base AS final
 ENV BACNET_STACK_VERSION 0.8.5
 ENV BACNET_DEVICE_INSTANCE 5678
+ENV PIPE_PATH /tmp/test_vol/TEST_FIFO
 COPY --from=builder /bacnet_build/bin/* /bin
 
 ENTRYPOINT ["/bin/bacserv", "5678"]

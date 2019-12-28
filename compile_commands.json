@@ -4527,5 +4527,31 @@
    "../../src/crc.o"
   ],
   "file": "../../src/crc.c"
+ },
+ {
+  "directory": "/home/dan/projects/BACnet-Stack-Modified/lib",
+  "arguments": [
+   "cc",
+   "-c",
+   "-Wall",
+   "-Wmissing-prototypes",
+   "-Os",
+   "-I../ports/linux",
+   "-I../demo/object",
+   "-I../demo/handler",
+   "-I../include",
+   "-DPRINT_ENABLED=1",
+   "-DBACAPP_ALL",
+   "-DBACFILE",
+   "-DINTRINSIC_REPORTING",
+   "-DBACNET_PROPERTY_LISTS=1",
+   "-DBACDL_BIP=1",
+   "-DBBMD_ENABLED=1",
+   "-DWEAK_FUNC=",
+   "../src/pipe.c",
+   "-o",
+   "../src/pipe.o"
+  ],
+  "file": "../src/pipe.c"
  }
 ]

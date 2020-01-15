@@ -24,4 +24,3 @@ ENV PIPE_PATH /tmp/test_vol/TEST_FIFO
 COPY --from=builder /bacnet_build/bin/* /bin/
 
 ENTRYPOINT ["/bin/bacserv", "5678"]
-#CMD /bin/bacserv $BACNET_DEVICE_INSTANCE

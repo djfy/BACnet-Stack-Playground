@@ -1,7 +1,3 @@
-//
-// Created by dan on 12/26/19.
-//
-
 #ifndef PIPE_H
 #define PIPE_H
 

@@ -1,7 +1,3 @@
-//
-// Created by dan on 12/26/19.
-//
-
 #include "pipe.h"
 
 #include <errno.h>

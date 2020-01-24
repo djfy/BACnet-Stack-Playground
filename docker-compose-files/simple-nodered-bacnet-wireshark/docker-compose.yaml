@@ -4,13 +4,24 @@ services:
     image: fh1ch/bacstack-compliance-docker
     environment:
       - BACNET_DEVICE_INSTANCE=1337
+      
   nodered:
     image: nodered/node-red:latest
     ports:
         - "1880:1880"
     volumes:
       - nodered-data:/data
+      
+  wireshark: 
+    image: ffeldhaus/wireshark
+    ports:
+      - "14500:14500"
+    cap_add:
+      - NET_ADMIN
 
+networks:
+  default:
+    driver: bridge
 
 volumes:
   nodered-data:

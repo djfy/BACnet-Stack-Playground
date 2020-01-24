@@ -1,18 +1,16 @@
 version: '3.7'
 services:
-  bacnet_server:
-    image: bacmod:1
-    volumes:
-      - test_vol:/tmp/test_vol
-  listener:
-    image: pipe_test:1
-    volumes:
-      - test_vol:/tmp/test_vol
+  bacnet_server: # Runs `bacserv $BACNET_DEVICE_INSTANCE`
+    image: fh1ch/bacstack-compliance-docker
+    environment:
+      - BACNET_DEVICE_INSTANCE=1337
   nodered:
     image: nodered/node-red:latest
     ports:
         - "1880:1880"
+    volumes:
+      - nodered-data:/data
 
 
 volumes:
-  test_vol:
+  nodered-data:

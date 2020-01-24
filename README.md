@@ -11,6 +11,7 @@ The scaleable compose files (`scaleable-` directory prefix) allow the BACnet
 server service to scale with unique* IDs. It requires a special image 
 built from the `bacstack-with-rand.dockerfile` provided somewhere in this 
 repository.
+
 *<sup>The random number generation method does not guarantee all server
 instances will have the same ID, just that they probably will.</sup>
 

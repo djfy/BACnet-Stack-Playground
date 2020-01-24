@@ -9,13 +9,6 @@ services:
         - "1880:1880"
     volumes:
       - nodered-data:/data
-      
-  wireshark:
-    image: ffeldhaus/wireshark
-    ports:
-      - "14500:14500"
-    cap_add:
-      - NET_ADMIN
 
 networks:
   default:
